@@ -1,5 +1,5 @@
 import numpy as np
-from aeromission.units import ft2m, m2ft, G0_FT, M_PER_FT
+from navigation_control_flight_simulation.units import ft2m, m2ft, G0_FT, M_PER_FT
 
 
 def test_exact_foot_definition():

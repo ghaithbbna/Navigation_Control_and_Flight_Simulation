@@ -1,20 +1,16 @@
-"""Longitudinal plant model (7 states, 2 inputs, 5 outputs).
+"""Longitudinal plant model (7 states, 2 inputs, 5 outputs)
 
 Model (deviation form around the operating point)
 -------------------------------------------------
     x~_dot = A x~ + B u~          y~ = C x~
     x = x_trim + x~               u = u_trim + u~
 
-States   : [h (ft), theta (rad), V (ft/s), alpha (rad), q (rad/s),
-            thrust actuator, elevator actuator (rad)]
+States   : [h (ft), theta (rad), V (ft/s), alpha (rad), q (rad/s), thrust actuator, elevator actuator (rad)]
 Inputs   : [thrust command, elevator command (rad)]
 Outputs  : [h, theta, -7*V, alpha, q]       (note the -7 scaling on speed)
+The A, B, C numbers come from an online course.
 
-The A, B, C numbers come from the course (assignment 4). They are DATA, not
-code, and are kept here as the single source of truth for this project.
-
-Important: A, B are deviation dynamics. They are NOT required to satisfy
-A @ x_trim + B @ u_trim = 0 -- see tests/test_plant.py::test_trim_residual_is_reported_not_assumed.
+A @ x_trim + B @ u_trim = 0 
 """
 
 from dataclasses import dataclass, replace
@@ -26,10 +22,9 @@ STATE_NAMES = ("h", "theta", "V", "alpha", "q", "thrust_act", "elev_act")
 INPUT_NAMES = ("thrust", "elevator")
 OUTPUT_NAMES = ("h", "theta", "neg7V", "alpha", "q")
 
-
 @dataclass(frozen=True)
 class LongitudinalPlant:
-    A: np.ndarray
+    A: np.ndarray 
     B: np.ndarray
     C: np.ndarray
     x_trim: np.ndarray
@@ -52,8 +47,7 @@ class LongitudinalPlant:
     def with_thrust_scale(self, kappa):
         """Return a copy whose thrust column of B is multiplied by kappa.
 
-        kappa = 1 is the course model. Used for the thrust-authority sweep
-        (the thrust units/authority of the course model are unknown).
+        kappa = 1 is the course model.
         """
         B = self.B.copy()
         B[:, 0] *= kappa
@@ -68,7 +62,6 @@ class LongitudinalPlant:
 
         Uses the block-matrix exponential
             expm([[A, B], [0, 0]] * dt) = [[Phi, Gamma], [0, I]]
-        which is valid even when A is singular or ill-conditioned.
         """
         n, m = self.n, self.m
         M = np.zeros((n + m, n + m))
@@ -86,7 +79,6 @@ class LongitudinalPlant:
 
 
 def course_plant():
-    """The plant used in course assignment 4."""
     A = np.array([
         [0,      500.0,  0,       -500.0,   0,       0,      0],
         [0,      0,      0,       0,        1,       0,      0],

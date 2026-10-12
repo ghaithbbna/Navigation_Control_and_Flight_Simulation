@@ -1,7 +1,7 @@
 import numpy as np
 import pytest
 from scipy.linalg import expm
-from aeromission.plant import course_plant
+from navigation_control_flight_simulation.plant import course_plant
 
 
 @pytest.fixture
