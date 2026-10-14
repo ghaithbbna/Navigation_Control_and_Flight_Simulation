@@ -7,3 +7,6 @@ results/*.npz
 
 results/flight_*.csv
 results/gates_*.csv
+
+results/flight_*.csv
+results/gates_*.csv
