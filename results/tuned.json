@@ -1,0 +1,50 @@
+{
+ "C0|staircase|True": {
+  "qv": 0.1,
+  "delay": 2
+ },
+ "C0|staircase|False": {
+  "qv": 0.01,
+  "delay": 2
+ },
+ "C0|linear|True": {
+  "qv": 0.1,
+  "delay": 0
+ },
+ "C0|linear|False": {
+  "qv": 0.01,
+  "delay": 0
+ },
+ "C0|shaped|True": {
+  "qv": 0.01,
+  "delay": 0
+ },
+ "C0|shaped|False": {
+  "qv": 0.01,
+  "delay": 0
+ },
+ "C1|staircase|True": {
+  "qv": 10,
+  "delay": 2
+ },
+ "C1|staircase|False": {
+  "qv": 0.1,
+  "delay": 3
+ },
+ "C1|linear|True": {
+  "qv": 10,
+  "delay": -1
+ },
+ "C1|linear|False": {
+  "qv": 0.01,
+  "delay": 0
+ },
+ "C1|shaped|True": {
+  "qv": 1,
+  "delay": 0
+ },
+ "C1|shaped|False": {
+  "qv": 0.1,
+  "delay": 0
+ }
+}
